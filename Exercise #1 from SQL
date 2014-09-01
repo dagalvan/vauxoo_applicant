@@ -1,3 +1,15 @@
+sql1: 
+
+*Crea una base de datos llamada "employee_employee". 
+*Crea una tabla de "employee" con los campos "id", "first name", "Last Name". 
+*Crea una tabla "employee_departament" con los campos "id", "name", "description". 
+*Haz los cambios necesarios en la base de datos para poder asignarle a los empleados su respectivo departamento.
+*Inserta 4 empleados y 6 departamentos de datos, asígnale a los empleados un departamento. 
+
+Reglas: Un empleado está asignado a un solo departamento. Los departamentos pueden tener muchos empleados. 
+Haz cumplir las reglas de normalización de tablas y reglas de base de datos.
+
+
 --Creación de la Base de Datos
 
 CREATE DATABASE employee_employee
