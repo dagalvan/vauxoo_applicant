@@ -1,0 +1,43 @@
+Usar un metodo instanciado en otra clase
+
+
+# -*- coding:850 -*-
+
+
+class calc():
+	
+	lista=[]
+	
+	#Creando función que permite ingresar los n datos
+	def fill_list(self):
+		
+		x=int(raw_input("\nNúmero de elementos en la lista: "))
+		for i in range(x):
+			self.lista.append(int(raw_input("\nIngrese número: ")))
+		print "\nLa lista a sumar es: ", self.lista
+
+obj=calc()
+obj.fill_list()
+
+
+
+
+# -*- coding:850 -*-
+
+print "Programa para sumar una lista dada por el usuario"
+
+from calc import calc     #importando de calc el metodo de captura
+
+class calc_test():
+	
+	lista = []
+		
+	#creando funcion suma	
+	def sum_list(self):
+		suma=0
+		for i in calc.lista:
+		   suma+= i		
+		print "\nLa suma de los elementos de la lista es: ", suma
+ 
+obj = calc_test()
+obj.sum_list()
