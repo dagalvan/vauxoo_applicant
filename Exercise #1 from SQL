@@ -1,0 +1,73 @@
+--Creación de la Base de Datos
+
+CREATE DATABASE employee_employee
+  WITH OWNER = postgres
+       ENCODING = 'UTF8'
+       TABLESPACE = pg_default
+       LC_COLLATE = 'es_MX.UTF-8'
+       LC_CTYPE = 'es_MX.UTF-8'
+       CONNECTION LIMIT = -1;
+
+--Tabla empleados
+
+Create table employee(
+id_e serial,
+first_name varchar(40),
+last_name varchar (40),
+id_dep smallint,
+primary key (id_e))
+
+
+
+--Tabla departamento
+
+Create table employee_department(
+id_d serial,
+name varchar (30),
+description varchar (40),
+primary key (id_d))
+
+--Poblar tablas
+
+	--empleado
+
+	insert into employee (first_name, last_name, id_dep) values ('Cupertino', 'Laguna',1);
+	insert into employee (first_name, last_name, id_dep) values ('Luis', 'Lira',3);
+	insert into employee (first_name, last_name, id_dep) values ('Juan', 'Duarte',2);
+	insert into employee (first_name, last_name, id_dep) values ('Estela', 'Guadian',6);
+
+	select * from employee
+	select * from employee_department
+
+	--departamento
+
+	insert into employee_department (name,description) values ('Contabilidad','Manejo del dinero');
+	insert into employee_department (name,description) values ('Administracion','Manejo de los insumos');
+	insert into employee_department (name,description) values ('Sistemas','Manejo de la informacion');
+	insert into employee_department (name,description) values ('Recursos Humanos','Manejo de personal');
+	insert into employee_department (name,description) values ('Auditoria','Control de insumos');
+	insert into employee_department (name,description) values ('Ventas','Venta de mercancia');
+
+--Selección de empleados y sus departamentos
+
+select e.first_name, ep.name
+from employee as e
+join employee_department as ep
+on e.id_dep=ep.id_d
+order by name
+
+--Modificando empleado para mostrar 2 empleados en el mismo departamento
+update employee
+set id_dep=6 
+where id_e=2
+
+	--Probando cambios
+	
+	select * from employee
+	
+	select e.first_name, ep.name
+	from employee as e
+	join employee_department as ep
+	on e.id_dep=ep.id_d
+	order by id_e
+
