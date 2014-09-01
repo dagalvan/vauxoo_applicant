@@ -1,0 +1,30 @@
+sql3: Haz los cambios necesarios en la base de datos para poder asignar a los empleados un jefe.
+Inserta a cada empleado un jefe. Reglas: Un jefe, es también un empleado. Un empleado solo puede tener un jefe. 
+Un jefe puede tener muchos empleados. Haz cumplir las reglas de normalización de tablas y reglas de base de datos.
+
+
+--Agregando columna jefe
+
+alter table employee add column boss smallint references employee(id_e);
+
+--Agregando restriccion para que un empleado no sea su propio jefe
+alter table employee
+add constraint CK_no_same_boss_id
+check (id_e<>boss) 
+
+	--Probando restricciones
+	update employee
+	set boss=2
+	where id_e=1
+
+	update employee
+	set boss=2
+	where id_e=4
+
+	update employee
+	set boss=3
+	where id_e=3
+
+
+	 select * from employee
+	 order by id_e
