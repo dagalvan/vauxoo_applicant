@@ -1,0 +1,59 @@
+sql2: Utilizando la misma base de datos. Crea una tabla llamada "employee_hobby" con los campos "id", "name", "description". Haz los cambios necesarios en la base de datos para poder asignar a los empleados sus pasatiempos.
+Inserta 3 pasatiempos y asígnale a todos los empleados al menos 2 pasatiempos. 
+Reglas: Un empleado puede tener muchos pasatiempos. Y muchos pasatiempos pueden pertenecer a muchos empleados. 
+Haz cumplir las reglas de normalización de tablas y reglas de base de datos.
+
+--Tabla hobby
+
+Create table employee_hobby(
+id_h serial,
+name_h varchar (25),
+description_h varchar (40),
+primary key (id_h))
+
+
+select * from employe_hobby
+
+-- Poblando la tabla hobby
+insert into employee_hobby (name_h, description_h) values ('Lectura','Gusto por leer');
+insert into employee_hobby (name_h, description_h) values ('Ver series','Gusto por las series');
+insert into employee_hobby (name_h, description_h) values ('Ver peliculas','Gusto por el cine');
+insert into employee_hobby (name_h, description_h) values ('Futbol','Gusto por eel deporte del balon pie');
+insert into employee_hobby (name_h, description_h) values ('Escuchar musica','Gusto por la musica');
+
+
+---Tabla relacion empleado-hobby
+
+drop table e_hobby
+
+Create table e_hobby(
+id_eh serial,
+id_emp smallint references employee(id_e),
+hobby smallint references employee_hobby(id_h),
+primary key (id_eh))
+
+
+select * from e_hobby
+
+--Poblado de tabla
+
+insert into e_hobby (id_emp, hobby) values (1,2);
+insert into e_hobby (id_emp, hobby) values (1,5);
+insert into e_hobby (id_emp, hobby) values (1,3);
+insert into e_hobby (id_emp, hobby) values (2,5);
+insert into e_hobby (id_emp, hobby) values (2,4);
+insert into e_hobby (id_emp, hobby) values (3,1);
+insert into e_hobby (id_emp, hobby) values (3,4);
+insert into e_hobby (id_emp, hobby) values (4,4);
+
+	--Comprobando relacion empleado con hobby
+
+	select e.first_name as employee, emph.name_h as hobby
+	from employee as e
+	join e_hobby as eh
+	 on e.id_e=eh.id_emp
+	 join employee_hobby as emph 
+	 on emph.id_h=eh.hobby
+	 order by id_emp
+
+
